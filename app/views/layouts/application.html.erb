@@ -22,11 +22,12 @@
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              <%= link_to "/", class: 'nav-link text-light' do %>
-                <i class="fas fa-home"></i><span> Home </span>
-              <% end %>
 
               <% if user_signed_in? %>
+                <%= link_to user_session_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-home"></i><span> Home </span>
+                <% end %>
+
                 <%= link_to "/users", class: 'nav-link text-light' do %>
                   <i class="fas fa-users"></i><span> Users </span>
                 <% end %>
@@ -40,7 +41,11 @@
                 <% end %>
 
               <% else %>
-                <%= link_to "/home/about", class: 'nav-link text-light' do %>
+                <%= link_to "/", class: 'nav-link text-light' do %>
+                  <i class="fas fa-home"></i><span> Home </span>
+                <% end %>
+
+                <%= link_to home_about_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-link"></i><span> About </span>
                 <% end %>
 
@@ -60,8 +65,16 @@
 
         </div>
       </nav>
-    <%= yield %>
-    
+    </hedder>
+
+    <main>
+      <p id="notice">
+        <%= flash[:notice] %>
+      </p>
+      <%= yield %>
+    </main>
+
+
     <footer>
       <div class="container mt-5">
         <div class="row">
